@@ -1,11 +1,13 @@
+import { v4 as uuid } from "uuid";
+
 export const DATA = [
   {
-    id: 1,
+    id: uuid(),
     text: "College Seminar",
     isCompleted: false,
   },
   {
-    id: 2,
+    id: uuid(),
     text: "Doctor Meeting",
     isCompleted: true,
   },

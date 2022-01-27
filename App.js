@@ -1,7 +1,14 @@
 import React, { Component } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
-import { FlatList } from "react-native-web";
-import { DATA } from "./DATA";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  FlatList,
+} from "react-native";
+import { v4 as uuid } from "uuid";
+import { DATA } from "./todo_data";
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +20,7 @@ class App extends Component {
   }
 
   onAdd = () => {
-    const task = { id: Date.now(), text: this.state.text, isCompleted: false };
+    const task = { id: uuid(), text: this.state.text, isCompleted: false };
     this.setState((state) => ({ tasks: [...state.tasks, task], text: "" }));
   };
 
