@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "SimpleTodo",
-    "slug": "SimpleTodo",
+    "name": "ParentChild",
+    "slug": "ParentChild",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

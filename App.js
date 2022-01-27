@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import Child from "./Child";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: "Data of parent used by child",
+    };
+  }
+
+  updateData = (childText) => {
+    this.setState({ text: childText });
+  };
+
+  render() {
+    return (
+      <View>
+        <Text style={styles.heading}>Parent - Child</Text>
+        <Child data={this.state.text} updateData={this.updateData} />
+      </View>
+    );
+  }
 }
 
+export default App;
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  heading: {
+    marginTop: 10,
+    fontSize: 30,
+    textAlign: "center",
+    fontWeight: "bold",
   },
 });
