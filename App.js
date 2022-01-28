@@ -24,12 +24,10 @@ class App extends Component {
     this.setState((state) => ({ tasks: [...state.tasks, task], text: "" }));
   };
 
-  onCompletion = (id) => {
-    const updatedTasks = [];
-    for (let item of this.state.tasks) {
-      if (item.id !== id) updatedTasks.push(item);
-      else updatedTasks.push({ ...item, isCompleted: true });
-    }
+  // Get todo item by index and update the same.
+  onCompletion = (index) => {
+    const updatedTasks = [...this.state.tasks];
+    updatedTasks[index].isCompleted = true;
     this.setState({ tasks: updatedTasks });
   };
 
@@ -40,7 +38,7 @@ class App extends Component {
       </Text>
       <Button
         title="Done"
-        onPress={() => this.onCompletion(data.item.id)}
+        onPress={() => this.onCompletion(data.index)}
         disabled={data.item.isCompleted ? true : false}
       />
     </View>
