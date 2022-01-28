@@ -19,6 +19,11 @@ class Comments extends Component {
     };
   }
 
+  onAddComment = () => {
+    this.props.addComment(this.state.text);
+    this.setState({ text: "" });
+  };
+
   render() {
     return (
       <View>
@@ -45,10 +50,7 @@ class Comments extends Component {
             placeholder="Comment..."
             onChangeText={(val) => this.setState({ text: val })}
           />
-          <Button
-            title="Add"
-            onPress={() => this.props.addComment(this.state.text)}
-          />
+          <Button title="Add" onPress={this.onAddComment} />
         </View>
 
         {/* Display all comments */}

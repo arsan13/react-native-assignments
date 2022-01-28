@@ -18,37 +18,36 @@ class App extends Component {
     this.state = {
       posts: DATA,
       showCommentBox: false,
+      commentItemIndex: null,
       commentItem: null,
     };
   }
 
-  onLike = (id) => {
+  onLike = (index) => {
     let tempPosts = [...this.state.posts];
-    for (let item of tempPosts) {
-      if (item.id === id) {
-        item.likes += 1;
-        break;
-      }
-    }
+    tempPosts[index].likes += 1;
     this.setState({ posts: tempPosts });
   };
 
-  onShowComments = (item) => {
-    this.setState({ showCommentBox: true, commentItem: item });
+  onShowComments = (data) => {
+    this.setState({
+      showCommentBox: true,
+      commentItemIndex: data.index,
+      commentItem: data.item,
+    });
   };
 
   onHideComments = () => {
-    this.setState({ showCommentBox: false, commentItem: null });
+    this.setState({
+      showCommentBox: false,
+      commentItemIndex: null,
+      commentItem: null,
+    });
   };
 
   onAddComment = (comment) => {
     let tempPosts = [...this.state.posts];
-    for (let item of tempPosts) {
-      if (item.id === this.state.commentItem.id) {
-        item.comments.push(comment);
-        break;
-      }
-    }
+    tempPosts[this.state.commentItemIndex].comments.push(comment);
     this.setState({ posts: tempPosts });
   };
 
@@ -65,13 +64,13 @@ class App extends Component {
           <EvilIcons
             size={25}
             name="heart"
-            onPress={() => this.onLike(data.item.id)}
+            onPress={() => this.onLike(data.index)}
           />
           <Text style={styles.itemText}>{data.item.likes}</Text>
         </View>
 
         {/* A new component is mounted to display comment box */}
-        <TouchableOpacity onPress={() => this.onShowComments(data.item)}>
+        <TouchableOpacity onPress={() => this.onShowComments(data)}>
           <Text style={styles.itemText}>
             {data.item.comments.length} Comments
           </Text>
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
     height: 300,
   },
   item: {
-    marginVertical: 5,
+    marginVertical: 10,
   },
   textContent: {
     flexDirection: "row",
