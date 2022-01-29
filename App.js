@@ -52,7 +52,7 @@ class App extends Component {
         <View style={styles.cardFooter}>
           <Text style={styles.cardFooterColor}>{data.item.published_date}</Text>
 
-          {/* Display "Marks as read" button if article is not read, else display "has read" icon */}
+          {/* If article is not read, display "Marks as read" button, else "has read" icon */}
           {!data.item.hasRead ? (
             <TouchableOpacity onPress={() => this.onReadClick(data.index)}>
               <Text style={styles.cardFooterColor}>Mark as read</Text>
